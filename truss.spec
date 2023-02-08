@@ -7,10 +7,15 @@ F (2*sqrt(3),2)
 
 A-B
 A-E
-A-D
-
-D-C
-C-F
 E-B
+F-C
 C-B
 B-F
+A-D
+D-C
+D-B
+
+~ F1 B (sqrt(0.5),sqrt(0.5))
+RY1 E (0,-1)
+RY2 F (0,-1)
+RX1 E (1,0)
