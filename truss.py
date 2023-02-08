@@ -14,7 +14,7 @@ class Truss:
     scale  : scale of the truss in the diagram
     """
 
-    def __init__(self, path: str, scale: int = 100,FORCE_NAME:str="F"):
+    def __init__(self, path: str, scale: int = 200,FORCE_NAME:str="F"):
         self.fpath = path
         self.rods = []
         self.points = {}
@@ -87,7 +87,7 @@ forces :\n"""
             line.edges[1].lines.append(line)
 
         self.rods = lines
-        print("rods",self.rods)
+        #print("rods",self.rods)
         for key, force in self.forces.items():
             force.acting_on = self.points[force.acting_on.name]
             self.points[force.acting_on.name].forces.append(force)
@@ -99,7 +99,7 @@ forces :\n"""
         forces = [force for force in self.forces]
         solution=solve(equations, forces,force_scale)
         truss.model_on_solution(solution,forces)
-        print("solution",solution)
+        #print("solution",solution)
         return truss
 
     def copy(self):
@@ -107,7 +107,7 @@ forces :\n"""
 
     def update_forces(self, force_scale):
         return
-        print(force_scale)
+        #print(force_scale)
         for key in self.external_forces:
             self.forces[key].set_magnitude(force_scale)
 
@@ -124,5 +124,5 @@ forces :\n"""
             equations.append(equation["Y"])
         for i,line in enumerate(self.rods):
             equations.append(line.tension_equation)
-        print("\n".join([str(i) for i in equations]))
+        #print("\n".join([str(i) for i in equations]))
         return equations

@@ -5,28 +5,28 @@ from random import randint
 
 pygame.init()
 
-size = width, height = 960, 720
-center = (width//3,height//3)
+size = width, height = 1960, 1080
+center = (width//3,height//4)
 background = (0, 0, 0)
 truss_path = "./truss.spec"
-force_color = "#ff8844"  # (randint(0,255),randint(0,255),randint(0,255))
-elongation = "#00ff00"
-compression = "#ff0000"
+force_color = "#ffffff"  # (randint(0,255),randint(0,255),randint(0,255))
+compression = "#00bb88"
+elongation = "#ff0000"
 
 screen = pygame.display.set_mode(size)
 
 
 def __render(at=center):
     global screen
-    truss = Truss(truss_path)
+    truss = Truss(truss_path,scale=500)
     print(truss)
     clock = pygame.time.Clock()
     scale = 1
     while True:
         if pygame.QUIT in pygame.event.get():
             sys.exit()
-        clock.tick(12)
-        new_truss = truss.balance(50)
+        clock.tick(5)
+        new_truss = truss.balance(scale)
         screen.fill(background)
         render_truss(new_truss,at)
         pygame.display.update()
@@ -44,7 +44,7 @@ def render_truss(truss,at):
         )
     for _, force in truss.forces.items():
         color = force_color
-        if force.name[0] == "R": color = "#ffffff"
+        if force.name[0] == "R": color = "#0088ff"
         pygame.draw.line(
             screen, color, add(force.acting_on.location,at), add(force.get_relative_endpoint(),at)
         )

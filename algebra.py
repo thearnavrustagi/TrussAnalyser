@@ -18,9 +18,9 @@ class Equation:
 
 def solve(equations: list, forces: list,fval:int):
     matrix = form_matrix(equations, forces)
-    print(tuple(enumerate(forces)))
+    #print(tuple(enumerate(forces)))
     RHS=np.transpose([fval]+[0]*(len(matrix)-1))
-    print("RHS",RHS)
+    #print("RHS",RHS)
     return np.linalg.solve(matrix,RHS)
 
 
@@ -42,6 +42,6 @@ def form_matrix(equations: list, forces: list):
                 if var == force:
                     matrix[j][i] = coeff
 
-    print(matrix)
-    print("\n".join([" ".join([str(e) for e in row]) for row in matrix]))
+    #print(matrix)
+    #print("\n".join([" ".join([str(e) for e in row]) for row in matrix]))
     return matrix

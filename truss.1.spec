@@ -15,7 +15,7 @@ A-D
 D-C
 D-B
 
-~ F1 B (0,1)
+~ F1 B (sqrt(0.5),sqrt(0.5))
 RY1 E (0,-1)
 RY2 F (0,-1)
 RX1 E (1,0)
