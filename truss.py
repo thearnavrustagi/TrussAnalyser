@@ -72,7 +72,7 @@ forces :\n"""
     def __link_all(self):
         lines = []
         for i, line in enumerate(self.rods):
-            line = Line(self.points[line[0]], self.points[line[1]])
+            line = Line(self.points[line[0]], self.points[line[1]],number=i)
             diff = line.edges[0] - line.edges[1]
             diff.name = line.edges[1].name
             line.tensions.append(Force(f"T{i+1}1", diff, from_components=True))

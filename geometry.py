@@ -31,7 +31,8 @@ class Point:
 
 
 class Line:
-    def __init__(self, a: Point, b: Point):
+    def __init__(self, a: Point, b: Point,number:int=-1):
+        self.number = number
         self.edges = (a, b)
         self.center = tuple(map(lambda x, y: (x + y) / 2, a.location, b.location))
         self.length = np.linalg.norm(
