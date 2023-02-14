@@ -5,13 +5,11 @@ from random import randint
 import numpy as np
 from math import atan2, degrees, pi, sin, cos, radians
 from geometry import Point
-import TrussPlotter
-import ResultsVisualiser
 
 pygame.init()
 
 size = width, height = 1960, 1080
-center = (width//3,height//4)
+center = (width//4,height//5)
 background = (0, 0, 0)
 truss_path = "./truss.truss"
 for a in sys.argv:
@@ -28,9 +26,9 @@ font = pygame.font.Font("./assets/font.ttf",24)
 
 screen = pygame.display.set_mode(size)
 
-def __render(at=center):
+def visualise_results(at=center):
     global screen
-    truss = Truss(truss_path,scale=500)
+    truss = Truss(truss_path,scale=250)
     print(truss)
     clock = pygame.time.Clock()
     scale = 1
@@ -120,11 +118,3 @@ def render_text(truss,at):
         text = font.render(f"Tension in rod {i+1} : {int(abs(force.magnitude))} N",True,"white")
         screen.blit(text,(32,y))
         y += 32
-        
-        
-
-if __name__ == "__main__":
-    if "-p" in sys.argv or "--plot" in sys.argv:
-        TrussPlotter.plot_truss()
-        sys.exit()
-    ResultsVisualiser.visualise_results()

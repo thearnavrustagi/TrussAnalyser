@@ -5,13 +5,11 @@ from random import randint
 import numpy as np
 from math import atan2, degrees, pi, sin, cos, radians
 from geometry import Point
-import TrussPlotter
-import ResultsVisualiser
 
 pygame.init()
 
 size = width, height = 1960, 1080
-center = (width//3,height//4)
+center = (width//4,height//5)
 background = (0, 0, 0)
 truss_path = "./truss.truss"
 for a in sys.argv:
@@ -28,9 +26,9 @@ font = pygame.font.Font("./assets/font.ttf",24)
 
 screen = pygame.display.set_mode(size)
 
-def __render(at=center):
+def plot_truss(at=center):
     global screen
-    truss = Truss(truss_path,scale=500)
+    truss = Truss(truss_path,scale=250)
     print(truss)
     clock = pygame.time.Clock()
     scale = 1
@@ -38,9 +36,8 @@ def __render(at=center):
         if pygame.QUIT in pygame.event.get():
             sys.exit()
         clock.tick(24)
-        new_truss = truss.balance(scale)
         screen.fill(background)
-        render_truss(new_truss,at)
+        render_truss(truss,at)
         pygame.display.update()
         scale += 1
 
@@ -54,10 +51,7 @@ def render_truss(truss,at):
         A, B = line.edges[0], line.edges[1]
         A, B = A.location, B.location
         center = ((A[0]+B[0])//2,(A[1]+B[1])//2)
-        image = None
-        if line.tensions[0].magnitude > 0: image = compression
-        else: image = elongation
-        if abs(line.tensions[0].magnitude) <  1: image = neutral
+        image = neutral.copy()
         C=np.subtract(B,A)
         width = np.linalg.norm(tuple(C))
         angle = degrees(atan2(-C[1],C[0]) if C[0] else pi/2)
@@ -82,7 +76,6 @@ def render_truss(truss,at):
     del forces[0]
     for force,image in forces:
         A = force.acting_on.location
-        if force.name[0] == "R": force.invert()
         magnitude = np.log2(abs(force.magnitude))/np.log2(1.2)
         x=160*force.direction[0]#+ np.log2(magnitude))*force.direction[0]
         y=160*force.direction[1]#+ np.log2(magnitude))*force.direction[1]
@@ -106,7 +99,7 @@ def render_text(truss,at):
         screen.blit(text,np.add(__at,point.location))
 
     y = 64
-    text = font.render(f"External Force : {int(abs(truss.external_forces[truss.FORCE_NAME].magnitude))} N",True,"white")
+    text = font.render(f"External Force : 0 N",True,"white")
     screen.blit(text,(32,0))
     for i, line in enumerate(truss.rods):
         A, B = line.edges[0], line.edges[1]
@@ -117,14 +110,7 @@ def render_text(truss,at):
         screen.blit(text,np.add(center,(at[0]-8,at[1]-16)))
 
         force = truss.forces[f"T{i+1}1"]
-        text = font.render(f"Tension in rod {i+1} : {int(abs(force.magnitude))} N",True,"white")
+        text = font.render(f"Tension in rod {i+1} : 0 N",True,"white")
         screen.blit(text,(32,y))
         y += 32
         
-        
-
-if __name__ == "__main__":
-    if "-p" in sys.argv or "--plot" in sys.argv:
-        TrussPlotter.plot_truss()
-        sys.exit()
-    ResultsVisualiser.visualise_results()

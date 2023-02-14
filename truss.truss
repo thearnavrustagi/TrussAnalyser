@@ -15,7 +15,7 @@ A-D
 D-C
 D-B
 
-~ F1 B (1/sqrt(2),1/sqrt(2))
+~ F1 B (0,1)
 RY1 E (0,-1)
 RY2 F (0,-1)
 RX1 E (1,0)

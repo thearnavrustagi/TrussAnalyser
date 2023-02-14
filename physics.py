@@ -20,12 +20,14 @@ class Force:
             self.components = point.location
             self.magnitude = np.linalg.norm(point.location)
             self.calculate_direction()
+            self.INITIAL_DIRECTION = self.direction
             self.components = tuple(
                 map(lambda x, y: x * y, self.direction, (magnitude, magnitude))
             )
         else:
             self.magnitude = magnitude
             self.direction = point.location
+            self.INITIAL_DIRECTION = self.direction
             self.calculate_components()
 
     def calculate_components(self):
@@ -48,9 +50,14 @@ class Force:
     def set_magnitude(self, value: int):
         self.magnitude = value
         self.calculate_components()
+        self.calculate_direction()
 
     def negate (self,name:str,acting_on:str):
         return Force(name,Point(acting_on,(-1*self.direction[0],-1*self.direction[1])))
+
+    def invert (self):
+        self.direction = tuple(-e for e in self.direction)
+        self.components = tuple(e for e in self.components)
 
     def __str__(self):
         return f"{self.name}, acting on {self.acting_on.name}, components: {self.components} and dir : {self.direction}, mag : {self.magnitude}"

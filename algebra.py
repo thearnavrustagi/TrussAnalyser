@@ -21,8 +21,11 @@ def solve(equations: list, forces: list,fval:int):
     #print(tuple(enumerate(forces)))
     RHS=np.transpose([fval]+[0]*(len(matrix)-1))
     #print("RHS",RHS)
-    return np.linalg.solve(matrix,RHS)
-
+    try:
+        return np.linalg.solve(matrix,RHS)
+    except Exception as e:
+        print(e)
+        return [1]*len(matrix)
 
 def form_matrix(equations: list, forces: list):
     matrix = []

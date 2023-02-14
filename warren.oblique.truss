@@ -1,0 +1,27 @@
+A (0,sqrt(3))
+B (1.2,sqrt(3))
+C (2,sqrt(3))
+D (2.8,sqrt(3))
+E (4,sqrt(3))
+F (1,0)
+G (3,0)
+H (2,0)
+
+A-B
+B-C
+C-D
+D-E
+F-H
+H-G
+A-F
+B-F
+C-F
+C-G
+D-G
+E-G
+C-H
+
+~ F C (0,1)
+RX1 A (1,0)
+RY1 A (0,1)
+RY2 E (0,1)

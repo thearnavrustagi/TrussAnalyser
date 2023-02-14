@@ -14,7 +14,7 @@ class Truss:
     scale  : scale of the truss in the diagram
     """
 
-    def __init__(self, path: str, scale: int = 200,FORCE_NAME:str="F"):
+    def __init__(self, path: str, scale: int = 250,FORCE_NAME:str="F"):
         self.fpath = path
         self.rods = []
         self.points = {}
