@@ -1,0 +1,32 @@
+A (0,0)
+B (1,0*tan(radians(20)))
+C (2,0*tan(radians(20)))
+D (3,0*tan(radians(20)))
+E (4,0*tan(radians(20)))
+F (3,1*tan(radians(20)))
+G (2,2*tan(radians(20)))
+H (1,3*tan(radians(20)))
+I (0,4*tan(radians(20)))
+
+A-B
+B-C
+C-D
+D-E
+E-F
+F-G
+G-H
+H-I
+I-A
+A-H
+B-G
+C-F
+H-B
+G-C
+F-D
+
+~ F1 C (0,-2000)
+~ F2 E (0,-4000)
+
+RXA A (1,0)
+RYA A (0,1)
+RXI I (1,0)

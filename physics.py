@@ -12,8 +12,17 @@ class Force:
     direction  : the unit vector depicting the direction of the force
     """
 
-    def __init__(self, name: str, point: Point, magnitude=1, from_components=False):
+    def __init__(
+        self,
+        name: str,
+        point: Point,
+        dimension: int,
+        magnitude: float = 1,
+        from_components: bool = False,
+    ):
         self.name = name
+        self.dimension = dimension
+        assert dimension == len(point.location)
         self.acting_on = point
 
         if from_components:
@@ -21,9 +30,7 @@ class Force:
             self.magnitude = np.linalg.norm(point.location)
             self.calculate_direction()
             self.INITIAL_DIRECTION = self.direction
-            self.components = tuple(
-                map(lambda x, y: x * y, self.direction, (magnitude, magnitude))
-            )
+            print(self)
         else:
             self.magnitude = magnitude
             self.direction = point.location
@@ -52,12 +59,18 @@ class Force:
         self.calculate_components()
         self.calculate_direction()
 
-    def negate (self,name:str,acting_on:str):
-        return Force(name,Point(acting_on,(-1*self.direction[0],-1*self.direction[1])))
+    def negate(self, name: str, acting_on: str):
+        return Force(
+            name, Point(acting_on, (-1 * self.direction[0], -1 * self.direction[1]))
+        )
 
-    def invert (self):
+    def invert(self):
         self.direction = tuple(-e for e in self.direction)
         self.components = tuple(e for e in self.components)
+
+    def refactor(self):
+        self.components = (self.components[0], -self.components[1])
+        self.direction = (self.direction[0], -self.direction[1])
 
     def __str__(self):
         return f"{self.name}, acting on {self.acting_on.name}, components: {self.components} and dir : {self.direction}, mag : {self.magnitude}"

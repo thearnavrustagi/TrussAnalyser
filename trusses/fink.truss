@@ -1,0 +1,24 @@
+A (0,sqrt(3)/2)
+B (1,sqrt(3)/2)
+C (2,sqrt(3)/2)
+D (3,sqrt(3)/2)
+E (0.75,sqrt(3)/4)
+G (2.25,sqrt(3)/4)
+F (1.5,0)
+
+A-B
+B-C
+C-D
+A-E
+E-B
+E-F
+B-F
+F-C
+F-G
+C-G
+G-D
+
+~ F F (0,-1)
+RY1 A (0,1)
+RX1 A (1,0)
+RY2 D (0,1)

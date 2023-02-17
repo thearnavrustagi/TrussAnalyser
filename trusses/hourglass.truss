@@ -1,0 +1,20 @@
+A (0,0)
+B (2,0)
+C (1,sqrt(3))
+D (0,2*sqrt(3))
+E (2,2*sqrt(3))
+
+A-B
+B-C
+A-C
+C-D
+C-E
+D-E
+A-D
+B-E
+D-E
+
+~ F C (0,1)
+RX1 D (1,0)
+RY1 D (0,1)
+RY2 E (0,1)
