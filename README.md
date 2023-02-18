@@ -40,4 +40,4 @@ $ python3 main.py -v main.truss
 executing without the `-v` will show you the truss, and rods which are compressed and tense, usually, `green` is tense and `red` is compressed
 <br><br>
 
-![alt text](truss.png)
+![alt text](verification/6.1.17.png)
